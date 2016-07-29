@@ -1,0 +1,93 @@
+[0m[[0mdebug[0m] [0m[naha] [0m
+[0m[[0mdebug[0m] [0m[naha] Initial source changes: [0m
+[0m[[0mdebug[0m] [0m[naha] 	removed:Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	added: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/MyChiselProject.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixAddrRam.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/ItrCounter.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/BRam.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/DotProductArith.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] 	modified: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated products: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] External API changes: API Changes: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Modified binary dependencies: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Initial directly invalidated sources: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/MyChiselProject.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixAddrRam.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/ItrCounter.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/BRam.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/DotProductArith.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] [0m
+[0m[[0mdebug[0m] [0m[naha] Sources indirectly invalidated by:[0m
+[0m[[0mdebug[0m] [0m[naha] 	product: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	binary dep: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	external source: Set()[0m
+[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/MyChiselProject.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixAddrRam.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/ItrCounter.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/BRam.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/DotProductArith.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/MyChiselProject.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixAddrRam.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/ItrCounter.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/BRam.scala, /home/jc/Documents/ChiselTemplates/matrix_mult/DotProductArith.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Recompiling all 7 sources: invalidated sources (7) exceeded 50.0% of all sources[0m
+[0m[[0minfo[0m] [0mCompiling 7 Scala sources to /home/jc/Documents/ChiselTemplates/matrix_mult/target/scala-2.11/classes...[0m
+[0m[[0mdebug[0m] [0mGetting org.scala-sbt:compiler-interface:0.13.12:component from component compiler for Scala 2.11.7[0m
+[0m[[0mdebug[0m] [0mGetting org.scala-sbt:compiler-interface:0.13.12:component from component compiler for Scala 2.11.7[0m
+[0m[[0mdebug[0m] [0mRunning cached compiler 9176b3, interfacing (CompilerInterface) with Scala compiler version 2.11.7[0m
+[0m[[0mdebug[0m] [0mCalling Scala compiler with arguments  (CompilerInterface):[0m
+[0m[[0mdebug[0m] [0m	-bootclasspath[0m
+[0m[[0mdebug[0m] [0m	/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes:/home/jc/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.7.jar[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	/home/jc/Documents/ChiselTemplates/matrix_mult/target/scala-2.11/classes:/home/jc/.ivy2/cache/edu.berkeley.cs/chisel_2.11/jars/chisel_2.11-2.2.34.jar:/home/jc/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.11.7.jar[0m
+[0m[[33mwarn[0m] [0mthere were 99 feature warnings; re-run with -feature for details[0m
+[0m[[33mwarn[0m] [0mone warning found[0m
+[0m[[0mdebug[0m] [0mScala compilation took 15.848031974 s[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixAddrRam.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating (transitively) by inheritance from /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixAddrRam.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/MatrixAddrRam.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated by transitive inheritance dependency: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/MatrixAddrRam.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] The /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixAddrRam.scala source file has the following regular definitions changed:[0m
+[0m[[0mdebug[0m] [0m[naha] 	assert, nextIndex, hasExplicitReset, notify, parent, addNode, children, verify, name, in, printfs, MatrixAddrRam, addAssignment, addPin, wait, whenCond, $asInstanceOf, setName, <>, _clock, equals, setModuleName, bindings, names, resetPin, asInstanceOf, verifyWireWrap, switchKeys, addClock, params, synchronized, traversal, markComponent, verilog_parameters, bfs, const_dim, $isInstanceOf, moduleName, addDefaultReset, addResetPin, notifyAll, out, named, k_reg, resets, debug, isInstanceOf, dfs, assignments, asserts, nindex, <init>, stripComponent, clocks, reportWireWrap, clock, apply, printf, nodes, ==, reset_=, en, clone, whenConds, neededWireWraps, $init$, addModule$default$2, addModule, reset, hasExplicitClock, toString, io, !=, getClass, findBinding, addPin$default$2, _reset, ne, mult_block, hasWhenCond, k, getPathName, eq, debugs, getPathName$default$1, mult_reg, assert$default$2, wires, ##, finalize, hashCode, level.[0m
+[0m[[0mdebug[0m] [0m[naha] All member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m[naha] The following modified names cause invalidation of /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala: Set(in, MatrixAddrRam, asInstanceOf, const_dim, out, isInstanceOf, <init>, apply, ==, en, reset, io, k)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating /home/jc/Documents/ChiselTemplates/matrix_mult/MyChiselProject.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating (transitively) by inheritance from /home/jc/Documents/ChiselTemplates/matrix_mult/MyChiselProject.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/MyChiselProject.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated by transitive inheritance dependency: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/MyChiselProject.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] The /home/jc/Documents/ChiselTemplates/matrix_mult/MyChiselProject.scala source file has the following regular definitions changed:[0m
+[0m[[0mdebug[0m] [0m[naha] 	notify, wait, $asInstanceOf, equals, asInstanceOf, synchronized, MM, $isInstanceOf, main, notifyAll, isInstanceOf, ==, clone, toString, !=, getClass, ne, eq, ##, finalize, hashCode.[0m
+[0m[[0mdebug[0m] [0m[naha] All member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating (transitively) by inheritance from /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated by transitive inheritance dependency: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] The /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala source file has the following implicit definitions changed:[0m
+[0m[[0mdebug[0m] [0m[naha] 	cmdToId, longToInt.[0m
+[0m[[0mdebug[0m] [0m[naha] All member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m[naha] The following member ref dependencies of /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala are invalidated:[0m
+[0m[[0mdebug[0m] [0m[naha] 	/home/jc/Documents/ChiselTemplates/matrix_mult/MyChiselProject.scala[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating /home/jc/Documents/ChiselTemplates/matrix_mult/ItrCounter.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating (transitively) by inheritance from /home/jc/Documents/ChiselTemplates/matrix_mult/ItrCounter.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/ItrCounter.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated by transitive inheritance dependency: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/ItrCounter.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] The /home/jc/Documents/ChiselTemplates/matrix_mult/ItrCounter.scala source file has the following regular definitions changed:[0m
+[0m[[0mdebug[0m] [0m[naha] 	assert, nextIndex, hasExplicitReset, notify, parent, addNode, children, verify, name, printfs, addAssignment, addPin, wait, whenCond, $asInstanceOf, setName, <>, _clock, equals, setModuleName, bindings, names, resetPin, asInstanceOf, verifyWireWrap, switchKeys, addClock, params, synchronized, traversal, markComponent, verilog_parameters, bfs, hitMax, $isInstanceOf, moduleName, addDefaultReset, addResetPin, notifyAll, named, resets, debug, isInstanceOf, dfs, assignments, asserts, en_count, nindex, <init>, stripComponent, clocks, max, reportWireWrap, clock, apply, printf, nodes, ItrCounter, ==, reset_=, currCount, clone, whenConds, neededWireWraps, $init$, addModule$default$2, addModule, reset, done, hasExplicitClock, toString, io, !=, cout, getClass, findBinding, addPin$default$2, _reset, ne, hasWhenCond, getPathName, eq, debugs, getPathName$default$1, assert$default$2, wires, ##, finalize, hashCode, level.[0m
+[0m[[0mdebug[0m] [0m[naha] All member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m[naha] The following modified names cause invalidation of /home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala: Set(en_count, <init>, max, apply, ItrCounter, ==, reset, done, io, cout)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating /home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating (transitively) by inheritance from /home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated by transitive inheritance dependency: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] The /home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala source file has the following implicit definitions changed:[0m
+[0m[[0mdebug[0m] [0m[naha] 	cmdToId, longToInt.[0m
+[0m[[0mdebug[0m] [0m[naha] All member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m[naha] The following member ref dependencies of /home/jc/Documents/ChiselTemplates/matrix_mult/CounterChain.scala are invalidated:[0m
+[0m[[0mdebug[0m] [0m[naha] 	/home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating /home/jc/Documents/ChiselTemplates/matrix_mult/DotProductArith.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating (transitively) by inheritance from /home/jc/Documents/ChiselTemplates/matrix_mult/DotProductArith.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/DotProductArith.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated by transitive inheritance dependency: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/DotProductArith.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] The /home/jc/Documents/ChiselTemplates/matrix_mult/DotProductArith.scala source file has the following implicit definitions changed:[0m
+[0m[[0mdebug[0m] [0m[naha] 	cmdToId, longToInt.[0m
+[0m[[0mdebug[0m] [0m[naha] All member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m[naha] The following member ref dependencies of /home/jc/Documents/ChiselTemplates/matrix_mult/DotProductArith.scala are invalidated:[0m
+[0m[[0mdebug[0m] [0m[naha] 	/home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating /home/jc/Documents/ChiselTemplates/matrix_mult/BRam.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating (transitively) by inheritance from /home/jc/Documents/ChiselTemplates/matrix_mult/BRam.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/BRam.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated by transitive inheritance dependency: Set(/home/jc/Documents/ChiselTemplates/matrix_mult/BRam.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] The /home/jc/Documents/ChiselTemplates/matrix_mult/BRam.scala source file has the following regular definitions changed:[0m
+[0m[[0mdebug[0m] [0m[naha] 	assert, nextIndex, hasExplicitReset, notify, parent, addNode, children, verify, name, printfs, addAssignment, addPin, write_en, wait, whenCond, $asInstanceOf, setName, <>, _clock, equals, setModuleName, bindings, names, resetPin, asInstanceOf, verifyWireWrap, switchKeys, addClock, params, synchronized, traversal, markComponent, verilog_parameters, bfs, $isInstanceOf, read_out, moduleName, addDefaultReset, addResetPin, write_data, notifyAll, named, resets, debug, isInstanceOf, dfs, assignments, asserts, nindex, <init>, stripComponent, clocks, reportWireWrap, clock, apply, printf, nodes, ==, reset_=, clone, whenConds, neededWireWraps, $init$, addModule$default$2, addModule, reset, hasExplicitClock, toString, io, !=, reg_raddr, getClass, write_addr, findBinding, addPin$default$2, _reset, read_addr, ne, hasWhenCond, getPathName, eq, debugs, getPathName$default$1, bRam_rw, BRAM, assert$default$2, wires, ##, finalize, hashCode, level.[0m
+[0m[[0mdebug[0m] [0m[naha] All member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m[naha] The following modified names cause invalidation of /home/jc/Documents/ChiselTemplates/matrix_mult/MatrixMultiplyPipe.scala: Set(write_en, asInstanceOf, read_out, write_data, isInstanceOf, <init>, apply, ==, reset, io, write_addr, read_addr, BRAM)[0m
+[0m[[0mdebug[0m] [0m[naha] New invalidations:[0m
+[0m[[0mdebug[0m] [0m[naha] 	Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Previously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0mdebug[0m] [0m[naha] 	Set()[0m
+[0m[[0mdebug[0m] [0m[naha] All newly invalidated sources after taking into account (previously) recompiled sources:Set()[0m
