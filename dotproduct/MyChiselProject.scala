@@ -8,7 +8,7 @@ object DP {
     val res = 
     args(0) match {
         case "DotProduct" =>
-           chiselMainTest(tutArgs, () => Module(new DotProductTop(16))) {
+           chiselMainTest(tutArgs, () => Module(new DotProductTop(16, 2))) {
             c => new DotProductTopTests(c)
         }
     }

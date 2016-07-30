@@ -1,12 +1,12 @@
 package Templates
 
 import Chisel._
-import Templates
+import Templates._
 
 class BankBundle(bandwidth : Int, b : Int) extends Bundle {
 
-	val read_addr = UInt(16).asInput
-	val write_addr = UInt(16).asInput
+	val read_addr = UInt(width = 16).asInput
+	val write_addr = UInt(width = 16).asInput
 	val write_data = Bits(width = bandwidth).asInput
 	val write_en = Bool().asInput
 
@@ -21,7 +21,7 @@ class BRAM_Bank (bandwidth : Int, n : Int, b : Int) extends Module {
 
 	val bram_blocks = for (i <- 0 until b) yield
 					{
-						val bram_one = Module(new BRAM_param(bandwidth, w))
+						val bram_one = Module(new BRAM_param(bandwidth, n))
 						bram_one
 					}
 

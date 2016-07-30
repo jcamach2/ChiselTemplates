@@ -6,7 +6,7 @@ import ArithOperations._
 import DataPaths._
 
 
-class DotProductTop(w : Int) extends Module {
+class DotProductTop(w : Int, p : Int) extends Module {
 
 	val io = new Bundle {
 
@@ -14,7 +14,7 @@ class DotProductTop(w : Int) extends Module {
 		val status = UInt(OUTPUT)
 
     val input_data = UInt(INPUT, w) /* memory controller holder for now */
-    val input_addr = UInt(INPUT, 5)
+    val input_addr = UInt(INPUT, 16)
 
 
     val result = UInt(OUTPUT, w)
@@ -25,8 +25,8 @@ class DotProductTop(w : Int) extends Module {
 
    val dp_FSM = Module(new pipe_FSM(2))
    
-   val dp_ram1 = Module(new BRAM_param(w, 5))
-   val dp_ram2 = Module(new BRAM_param(w, 5))
+   val dp_ram1 = Module(new BRAM_Bank(w, 4, p))
+   val dp_ram2 = Module(new BRAM_Bank(w, 4, p))
 
    val dp_arith = Module(new DotProductArith(w))
 
@@ -40,7 +40,7 @@ class DotProductTop(w : Int) extends Module {
    dp_ram2.io.write_data := io.input_data  
 
    /* Counter */
-   val counter = Module(new CounterChain(1, w, 1))
+   val counter = Module(new CounterChain(1, w, p))
 
    switch (state) {
 
@@ -79,8 +79,8 @@ class DotProductTop(w : Int) extends Module {
    dp_ram2.io.read_addr := counter.io.counters_cout(0)(0)
 
    /* delay */
-   dp_arith.io.v1 := dp_ram1.io.read_out
-   dp_arith.io.v2 := dp_ram2.io.read_out
+   dp_arith.io.v1 := dp_ram1.io.read_out(0)
+   dp_arith.io.v2 := dp_ram2.io.read_out(0)
 
    val delayReg = Reg(init = Bool(false))
    val delayReg2 = Reg(init = Bool(false))
@@ -103,7 +103,7 @@ class DotProductTopTests (c: DotProductTop) extends Tester(c) {
     step(1)
   }
   poke(c.io.cmd, 0)
-  for (i <- 0 until 5) {
+  for (i <- 0 until 4) {
     input_ramdata(i, i*2)
   }
   step(1)
