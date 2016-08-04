@@ -2,10 +2,11 @@ package Templates
 
 import Chisel._
 import Templates._
+import math._
 
 class BankBundle(bandwidth : Int, b : Int) extends Bundle {
 
-	val read_addr = UInt(width = 16).asInput
+	val read_addr = (Vec.fill(b) { UInt(width = 16) }).asInput
 	val write_addr = UInt(width = 16).asInput
 	val write_data = Bits(width = bandwidth).asInput
 	val write_en = Bool().asInput
@@ -16,6 +17,16 @@ class BankBundle(bandwidth : Int, b : Int) extends Bundle {
 
 
 class BRAM_Bank (bandwidth : Int, n : Int, b : Int) extends Module {
+
+	/* b -> stride */
+
+	def decode(addr : UInt, b : Int) : UInt =
+	{
+		if ((b & (b - 1)) == 0) /* is power of 2 */
+			addr >> (log10(b) / log10(2) ).toInt
+		else
+			addr / UInt(b)
+	}
 
 	val io = new BankBundle(bandwidth, b)
 
