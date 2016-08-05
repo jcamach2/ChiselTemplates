@@ -1,6 +1,7 @@
 package ArithOperations
 
 import Chisel._
+import Templates._
 import math._
 
 class dpChain(w : Int, p : Int) extends Bundle {
@@ -21,45 +22,25 @@ class DotProductArith(w : Int, p : Int) extends Module {
 	
 	def isEven (n : Int) : Boolean = (n & 1) == 0
 
+	def addNode (a : UInt, b : UInt) : UInt = a + b
+
 	val io = new dpChain(w, p)
 
-	var p_num = p
-
-	val tree_level : Int = (log10(p) / log10(2)).ceil.toInt
-
-	val rtree_vec = Vec.fill(tree_level + 1) { Vec.fill(p) {Reg(UInt(width = w*w))} }
-
+	val mult_vec = Vec.fill(p) { UInt(width = w*w) }
 	for (i <- 0 until p) {
 		when (io.reset) {
-			rtree_vec(0)(i) := UInt(0)
+			mult_vec(i) := UInt(0)
 		}
 		.otherwise {
 			val productOut = io.v1_vec(i) * io.v2_vec(i)
-			rtree_vec(0)(i) := productOut 
+			mult_vec(i) := productOut
 		}
 	}
 
 	/* reduction  tree */
-	for (l <- 1 to tree_level) {
-		
-		var data_num = ((p_num + 1) / 2)
-		data_num = data_num - 1
+	val rTree_adder = Module(new reductionTree_Arith(w*w, p, addNode))
+	(0 until p) foreach { i => rTree_adder.io.data_vec(i) := mult_vec(i) }
 
-		if (isEven(p_num)) {
-			for (i <- p_num - 1 to 0 by -2) {
-				rtree_vec(l)(data_num) := rtree_vec(l - 1)(i) + rtree_vec(l - 1)(i - 1)
-				data_num = data_num - 1
-			}
-		}
-		else {
-			for (i <- p_num - 1 to 1 by -2) {
-				rtree_vec(l)(data_num) := rtree_vec(l - 1)(i) + rtree_vec(l - 1)(i - 1)
-				data_num = data_num - 1
-			}
-			rtree_vec(l)(0) := rtree_vec(l - 1)(0)										
-		}
-		p_num = ((p_num + 1) / 2)
-	}
 
 	/* accumulator flip flop */
 	val acc = Reg(init = UInt(0, w*w))
@@ -67,7 +48,7 @@ class DotProductArith(w : Int, p : Int) extends Module {
 		acc := UInt(0)
 	}
 	.elsewhen (io.en) {
- 		acc := acc + rtree_vec(tree_level)(0)
+ 		acc := acc + rTree_adder.io.tree_output
 	}
 
 	io.dotproduct := acc 
