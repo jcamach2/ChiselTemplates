@@ -21,7 +21,7 @@ class ItrCounter(w : Int, stride : Int) extends Module {
    val currCount = Reg(init = UInt(0, width = w))
 
    /* counter should go up to max - 1 --> counters from 0 to max - 1 (max times) */
-   val hitMax = (currCount >= io.max)
+   val hitMax = (io.vec_cout(stride - 1) >= io.max)
   
    when (io.en_count) {
       currCount := Mux(hitMax, UInt(0), currCount + UInt(stride))
