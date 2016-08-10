@@ -35,7 +35,7 @@ class pipe1(x_row : Int, w : Int) extends Module {
 	val pipe1_FSM = Module(new pipe_FSM(2)) /* pipe FSM */
 	pipe1_FSM.io.en := io.pipe_en
 
-    val mtxCounter = Module(new ItrCounter(w))
+    val mtxCounter = Module(new ItrCounter(w, 1))
 
     mtxCounter.io.reset := io.reset
     mtxCounter.io.max := UInt(x_row * x_row) - UInt(1)
@@ -66,7 +66,7 @@ class pipe1(x_row : Int, w : Int) extends Module {
 	val product_reg = Reg(init = Bits(0, width = w))
 	product_reg := io.subT_out * io.subT_2_out 
 
-	val readaddr_reg = mtxCounter.io.cout
+	val readaddr_reg = mtxCounter.io.vec_cout(0)
 
 	val writeaddr_reg = Reg(init = UInt(0, width = w))	
 	writeaddr_reg := readaddr_reg 

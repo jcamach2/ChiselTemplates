@@ -31,7 +31,7 @@ class ItrCounter(w : Int, stride : Int) extends Module {
    }
 
    io.vec_cout(0) := currCount
-   (1 until stride) foreach { i => io.vec_out(i) := UInt(1) + io.vec_out(i - 1) }
+   (1 until stride) foreach { i => io.vec_cout(i) := UInt(1) + io.vec_cout(i - 1) }
 
    io.done := hitMax
 }
