@@ -12,6 +12,10 @@ object Templates {
            chiselMainTest(tutArgs, () => Module(new Bram_DoubleBuffer(16, 4, 1))) {
             c => new Bram_DoubleBufferTesting(c)
         }
+        case "MP_FSM" =>
+          chiselMainTest(tutArgs, () => Module(new MetaPipe_FSM(16, 3))) {
+            c => new MetaPipe_FSM_Testing(c)
+        }
     }
   }
 }
