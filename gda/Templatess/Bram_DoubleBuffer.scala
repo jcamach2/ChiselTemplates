@@ -95,7 +95,7 @@ class Bram_DoubleBuffer (bandwidth : Int, n : Int, readers_count : Int) extends 
 class Bram_DoubleBufferTesting(c : Bram_DoubleBuffer) extends Tester(c) {
 
 
-	/* double-buffering BRAM with stride = 1*/
+
 	val n = 4
 	val rd = 1
 	poke(c.io.read_addr_vec(0), 0)
@@ -149,7 +149,7 @@ class Bram_DoubleBufferTesting(c : Bram_DoubleBuffer) extends Tester(c) {
 	}
 
 	val d5 = 2
-	/* check when write_done and read_done are not fired off at the same time */
+	//check when write_done and read_done are not fired off at the same time 
 	poke(c.io.write_done, 0)
 	poke(c.io.read_done_vec(0), 0)
 	for (i <- 0 until n - 2) {

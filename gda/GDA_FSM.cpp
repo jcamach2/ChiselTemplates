@@ -81,8 +81,8 @@ void GDA_FSM_t::dump ( FILE* f, val_t t, dat_t<1> reset ) {
 
 
 void GDA_FSM_t::clock_lo ( dat_t<1> reset, bool assert_fire ) {
-  { GDA_FSM_pipe1_block_mtxCounter__io_cout.values[0] = GDA_FSM_pipe1_block_mtxCounter__currCount.values[0];}
-  { GDA_FSM_pipe1_block__io_sigma_read_addr.values[0] = GDA_FSM_pipe1_block_mtxCounter__io_cout.values[0];}
+  { GDA_FSM_pipe1_block_mtxCounter__io_vec_cout_0.values[0] = GDA_FSM_pipe1_block_mtxCounter__currCount.values[0];}
+  { GDA_FSM_pipe1_block__io_sigma_read_addr.values[0] = GDA_FSM_pipe1_block_mtxCounter__io_vec_cout_0.values[0];}
   { GDA_FSM_sigmaM__io_read_addr.values[0] = GDA_FSM_pipe1_block__io_sigma_read_addr.values[0];}
   val_t T0;
   { T0 = GDA_FSM_sigmaM__reg_raddr.values[0];}
@@ -170,13 +170,12 @@ void GDA_FSM_t::clock_lo ( dat_t<1> reset, bool assert_fire ) {
   val_t T24;
   { T24 = TERNARY_1(T23, T22, T20);}
   { T25.values[0] = TERNARY(GDA_FSM_pipe1_block_sigmaCounters__reset.values[0], 0x0L, T24);}
-  { GDA_FSM_pipe1_block_mtxCounter__io_max.values[0] = 0xfL;}
-  val_t GDA_FSM_pipe1_block_mtxCounter__hitMax;
-  GDA_FSM_pipe1_block_mtxCounter__hitMax = GDA_FSM_pipe1_block_mtxCounter__io_max.values[0]<=GDA_FSM_pipe1_block_mtxCounter__currCount.values[0];
-  { GDA_FSM_pipe1_block_mtxCounter__io_done.values[0] = GDA_FSM_pipe1_block_mtxCounter__hitMax;}
   val_t T26;
   { T26 = GDA_FSM_pipe1_block_mtxCounter__currCount.values[0]+0x1L;}
   T26 = T26 & 0xffffL;
+  { GDA_FSM_pipe1_block_mtxCounter__io_max.values[0] = 0xfL;}
+  val_t GDA_FSM_pipe1_block_mtxCounter__hitMax;
+  GDA_FSM_pipe1_block_mtxCounter__hitMax = GDA_FSM_pipe1_block_mtxCounter__io_max.values[0]<=GDA_FSM_pipe1_block_mtxCounter__currCount.values[0];
   val_t T27;
   { T27 = TERNARY(GDA_FSM_pipe1_block_mtxCounter__hitMax, 0x0L, T26);}
   { GDA_FSM_pipe1_block_mtxCounter__io_en_count.values[0] = GDA_FSM_pipe1_block__state1_Regs_0.values[0];}
@@ -191,6 +190,7 @@ void GDA_FSM_t::clock_lo ( dat_t<1> reset, bool assert_fire ) {
   { T31 = TERNARY(T30, 0x0L, T28);}
   { GDA_FSM_pipe1_block_mtxCounter__reset.values[0] = GDA_FSM_pipe1_block__reset.values[0];}
   { T32.values[0] = TERNARY(GDA_FSM_pipe1_block_mtxCounter__reset.values[0], 0x0L, T31);}
+  { GDA_FSM_pipe1_block_mtxCounter__io_done.values[0] = GDA_FSM_pipe1_block_mtxCounter__hitMax;}
   val_t GDA_FSM_pipe1_block_pipe1_FSM__state_wait;
   GDA_FSM_pipe1_block_pipe1_FSM__state_wait = GDA_FSM_pipe1_block_pipe1_FSM__curr_state.values[0] == 0x2L;
   val_t GDA_FSM_pipe1_block_pipe1_FSM__state_en;
@@ -235,7 +235,7 @@ void GDA_FSM_t::clock_lo ( dat_t<1> reset, bool assert_fire ) {
   { T48 = TERNARY(T47, 0x0L, T46);}
   { T49.values[0] = TERNARY(GDA_FSM_pipe1_block_pipe1_FSM__reset.values[0], 0x0L, T48);}
   { T50.values[0] = TERNARY(GDA_FSM_pipe1_block__reset.values[0], 0x0L, GDA_FSM_pipe1_block__state1_Regs_0.values[0]);}
-  { T51.values[0] = TERNARY(GDA_FSM_pipe1_block__reset.values[0], 0x0L, GDA_FSM_pipe1_block_mtxCounter__io_cout.values[0]);}
+  { T51.values[0] = TERNARY(GDA_FSM_pipe1_block__reset.values[0], 0x0L, GDA_FSM_pipe1_block_mtxCounter__io_vec_cout_0.values[0]);}
   val_t T52;
   { T52 = GDA_FSM_subT_2__reg_raddr.values[0];}
   T52 = T52 & 0x3L;
@@ -328,9 +328,9 @@ void GDA_FSM_t::clock_lo ( dat_t<1> reset, bool assert_fire ) {
   { T77.values[0] = TERNARY(GDA_FSM_pipe0_block_mu_addr__reset.values[0], 0x0L, T76);}
   val_t T78;
   { T78 = TERNARY(GDA_FSM_pipe0_block_mu_addr__io_reset.values[0], 0x0L, GDA_FSM_pipe0_block_mu_addr__k_reg.values[0]);}
-  { GDA_FSM_pipe0_block_matrixCounters_ItrCounter__io_cout.values[0] = GDA_FSM_pipe0_block_matrixCounters_ItrCounter__currCount.values[0];}
-  { GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_0.values[0] = GDA_FSM_pipe0_block_matrixCounters_ItrCounter__io_cout.values[0];}
-  { GDA_FSM_pipe0_block_mu_addr__io_k.values[0] = GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_0.values[0];}
+  { GDA_FSM_pipe0_block_matrixCounters_ItrCounter__io_vec_cout_0.values[0] = GDA_FSM_pipe0_block_matrixCounters_ItrCounter__currCount.values[0];}
+  { GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_0_0.values[0] = GDA_FSM_pipe0_block_matrixCounters_ItrCounter__io_vec_cout_0.values[0];}
+  { GDA_FSM_pipe0_block_mu_addr__io_k.values[0] = GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_0_0.values[0];}
   val_t T79;
   { T79 = TERNARY_1(T75, GDA_FSM_pipe0_block_mu_addr__io_k.values[0], T78);}
   { T80.values[0] = TERNARY(GDA_FSM_pipe0_block_mu_addr__reset.values[0], 0x0L, T79);}
@@ -349,16 +349,16 @@ void GDA_FSM_t::clock_lo ( dat_t<1> reset, bool assert_fire ) {
   { T84.values[0] = TERNARY(GDA_FSM_pipe0_block_bool_vec_addr__reset.values[0], 0x0L, T83);}
   val_t T85;
   { T85 = TERNARY(GDA_FSM_pipe0_block_bool_vec_addr__io_reset.values[0], 0x0L, GDA_FSM_pipe0_block_bool_vec_addr__k_reg.values[0]);}
-  { GDA_FSM_pipe0_block_matrixCounters_ItrCounter_1__io_cout.values[0] = GDA_FSM_pipe0_block_matrixCounters_ItrCounter_1__currCount.values[0];}
-  { GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_1.values[0] = GDA_FSM_pipe0_block_matrixCounters_ItrCounter_1__io_cout.values[0];}
-  { GDA_FSM_pipe0_block_bool_vec_addr__io_k.values[0] = GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_1.values[0];}
+  { GDA_FSM_pipe0_block_matrixCounters_ItrCounter_1__io_vec_cout_0.values[0] = GDA_FSM_pipe0_block_matrixCounters_ItrCounter_1__currCount.values[0];}
+  { GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_1_0.values[0] = GDA_FSM_pipe0_block_matrixCounters_ItrCounter_1__io_vec_cout_0.values[0];}
+  { GDA_FSM_pipe0_block_bool_vec_addr__io_k.values[0] = GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_1_0.values[0];}
   val_t T86;
   { T86 = TERNARY_1(T82, GDA_FSM_pipe0_block_bool_vec_addr__io_k.values[0], T85);}
   { T87.values[0] = TERNARY(GDA_FSM_pipe0_block_bool_vec_addr__reset.values[0], 0x0L, T86);}
   { GDA_FSM_pipe0_block_matrix_addr__io_reset.values[0] = GDA_FSM_pipe0_block__io_reset.values[0];}
   val_t T88;
   { T88 = TERNARY(GDA_FSM_pipe0_block_matrix_addr__io_reset.values[0], 0x0L, GDA_FSM_pipe0_block_matrix_addr__mult_reg.values[0]);}
-  { GDA_FSM_pipe0_block_matrix_addr__io_in.values[0] = GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_1.values[0];}
+  { GDA_FSM_pipe0_block_matrix_addr__io_in.values[0] = GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_1_0.values[0];}
   { GDA_FSM_pipe0_block_matrix_addr__io_const_dim.values[0] = 0x4L;}
   val_t GDA_FSM_pipe0_block_matrix_addr__mult_block;
   GDA_FSM_pipe0_block_matrix_addr__mult_block = GDA_FSM_pipe0_block_matrix_addr__io_const_dim.values[0] * GDA_FSM_pipe0_block_matrix_addr__io_in.values[0];
@@ -370,7 +370,7 @@ void GDA_FSM_t::clock_lo ( dat_t<1> reset, bool assert_fire ) {
   { T91.values[0] = TERNARY(GDA_FSM_pipe0_block_matrix_addr__reset.values[0], 0x0L, T90);}
   val_t T92;
   { T92 = TERNARY(GDA_FSM_pipe0_block_matrix_addr__io_reset.values[0], 0x0L, GDA_FSM_pipe0_block_matrix_addr__k_reg.values[0]);}
-  { GDA_FSM_pipe0_block_matrix_addr__io_k.values[0] = GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_0.values[0];}
+  { GDA_FSM_pipe0_block_matrix_addr__io_k.values[0] = GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_0_0.values[0];}
   val_t T93;
   { T93 = TERNARY_1(T89, GDA_FSM_pipe0_block_matrix_addr__io_k.values[0], T92);}
   { T94.values[0] = TERNARY(GDA_FSM_pipe0_block_matrix_addr__reset.values[0], 0x0L, T93);}
@@ -487,9 +487,9 @@ void GDA_FSM_t::clock_lo ( dat_t<1> reset, bool assert_fire ) {
   { T135 = TERNARY(GDA_FSM_pipe0_block__reset.values[0], 0x0L, GDA_FSM_pipe0_block_mu_addr__io_out.values[0]);}
   { T136.values[0] = T135;}
   T136.values[0] = T136.values[0] & 0xffffL;
-  { GDA_FSM_pipe1_block_sigmaCounters_ItrCounter_1__io_cout.values[0] = GDA_FSM_pipe1_block_sigmaCounters_ItrCounter_1__currCount.values[0];}
-  { GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_1.values[0] = GDA_FSM_pipe1_block_sigmaCounters_ItrCounter_1__io_cout.values[0];}
-  { GDA_FSM_pipe1_block__io_subT_2_addr.values[0] = GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_1.values[0];}
+  { GDA_FSM_pipe1_block_sigmaCounters_ItrCounter_1__io_vec_cout_0.values[0] = GDA_FSM_pipe1_block_sigmaCounters_ItrCounter_1__currCount.values[0];}
+  { GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_1_0.values[0] = GDA_FSM_pipe1_block_sigmaCounters_ItrCounter_1__io_vec_cout_0.values[0];}
+  { GDA_FSM_pipe1_block__io_subT_2_addr.values[0] = GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_1_0.values[0];}
   { GDA_FSM_subT_2__io_read_addr.values[0] = GDA_FSM_pipe1_block__io_subT_2_addr.values[0];}
   { GDA_FSM_pipe0_block_pipe0_datapath__io_output_float.values[0] = GDA_FSM_pipe0_block_pipe0_datapath__sub_reg.values[0];}
   { GDA_FSM_pipe0_block__io_output_float.values[0] = GDA_FSM_pipe0_block_pipe0_datapath__io_output_float.values[0];}
@@ -500,9 +500,9 @@ void GDA_FSM_t::clock_lo ( dat_t<1> reset, bool assert_fire ) {
   { GDA_FSM_subT_2__io_write_addr.values[0] = GDA_FSM_pipe0_block__io_subT_addr.values[0];}
   { T137.values[0] = GDA_FSM_subT_2__io_write_addr.values[0];}
   T137.values[0] = T137.values[0] & 0x3L;
-  { GDA_FSM_pipe1_block_sigmaCounters_ItrCounter__io_cout.values[0] = GDA_FSM_pipe1_block_sigmaCounters_ItrCounter__currCount.values[0];}
-  { GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_0.values[0] = GDA_FSM_pipe1_block_sigmaCounters_ItrCounter__io_cout.values[0];}
-  { GDA_FSM_pipe1_block__io_subT_addr.values[0] = GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_0.values[0];}
+  { GDA_FSM_pipe1_block_sigmaCounters_ItrCounter__io_vec_cout_0.values[0] = GDA_FSM_pipe1_block_sigmaCounters_ItrCounter__currCount.values[0];}
+  { GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_0_0.values[0] = GDA_FSM_pipe1_block_sigmaCounters_ItrCounter__io_vec_cout_0.values[0];}
+  { GDA_FSM_pipe1_block__io_subT_addr.values[0] = GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_0_0.values[0];}
   { GDA_FSM_subT__io_read_addr.values[0] = GDA_FSM_pipe1_block__io_subT_addr.values[0];}
   { GDA_FSM_subT__io_write_data.values[0] = GDA_FSM_pipe0_block__io_output_float.values[0];}
   { GDA_FSM_subT__io_write_en.values[0] = GDA_FSM_pipe0_block__io_addr_en.values[0];}
@@ -725,8 +725,8 @@ void GDA_FSM_api_t::init_sim_data (  ) {
   sim_data.outputs.push_back(new dat_api<16>(&mod->GDA_FSM__io_wdata));
   sim_data.outputs.push_back(new dat_api<1>(&mod->GDA_FSM__io_state1));
   sim_data.outputs.push_back(new dat_api<1>(&mod->GDA_FSM__io_state0));
-  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_mtxCounter__io_cout));
-  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.io_cout"] = 0;
+  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_mtxCounter__io_vec_cout_0));
+  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.io_vec_cout_0"] = 0;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block__io_sigma_read_addr));
   sim_data.signal_map["GDA_FSM.pipe1_block.io_sigma_read_addr"] = 1;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_sigmaM__io_read_addr));
@@ -804,16 +804,16 @@ void GDA_FSM_api_t::init_sim_data (  ) {
   sim_data.signal_map["GDA_FSM.pipe1_block.sigmaCounters.done_complete"] = 51;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_mtxCounter__io_max));
   sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.io_max"] = 52;
-  sim_data.signals.push_back(new dat_api<1>(&mod->GDA_FSM_pipe1_block_mtxCounter__io_done));
-  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.io_done"] = 53;
   sim_data.signals.push_back(new dat_api<1>(&mod->GDA_FSM_pipe1_block_mtxCounter__io_en_count));
-  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.io_en_count"] = 54;
+  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.io_en_count"] = 53;
   sim_data.signals.push_back(new dat_api<1>(&mod->GDA_FSM_pipe1_block_mtxCounter__io_reset));
-  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.io_reset"] = 55;
+  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.io_reset"] = 54;
   sim_data.signals.push_back(new dat_api<1>(&mod->GDA_FSM_pipe1_block_mtxCounter__reset));
-  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.reset"] = 56;
+  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.reset"] = 55;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_mtxCounter__currCount));
-  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.currCount"] = 57;
+  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.currCount"] = 56;
+  sim_data.signals.push_back(new dat_api<1>(&mod->GDA_FSM_pipe1_block_mtxCounter__io_done));
+  sim_data.signal_map["GDA_FSM.pipe1_block.mtxCounter.io_done"] = 57;
   sim_data.signals.push_back(new dat_api<2>(&mod->GDA_FSM_pipe1_block_pipe1_FSM__prev_state));
   sim_data.signal_map["GDA_FSM.pipe1_block.pipe1_FSM.prev_state"] = 58;
   sim_data.signals.push_back(new dat_api<1>(&mod->GDA_FSM_pipe1_block_pipe1_FSM__reset));
@@ -902,10 +902,10 @@ void GDA_FSM_api_t::init_sim_data (  ) {
   sim_data.signal_map["GDA_FSM.pipe0_block.mu_addr.reset"] = 100;
   sim_data.signals.push_back(new dat_api<32>(&mod->GDA_FSM_pipe0_block_mu_addr__mult_reg));
   sim_data.signal_map["GDA_FSM.pipe0_block.mu_addr.mult_reg"] = 101;
-  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_matrixCounters_ItrCounter__io_cout));
-  sim_data.signal_map["GDA_FSM.pipe0_block.matrixCounters.ItrCounter.io_cout"] = 102;
-  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_0));
-  sim_data.signal_map["GDA_FSM.pipe0_block.matrixCounters.io_counters_cout_0"] = 103;
+  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_matrixCounters_ItrCounter__io_vec_cout_0));
+  sim_data.signal_map["GDA_FSM.pipe0_block.matrixCounters.ItrCounter.io_vec_cout_0"] = 102;
+  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_0_0));
+  sim_data.signal_map["GDA_FSM.pipe0_block.matrixCounters.io_counters_cout_0_0"] = 103;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_mu_addr__io_k));
   sim_data.signal_map["GDA_FSM.pipe0_block.mu_addr.io_k"] = 104;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_mu_addr__k_reg));
@@ -920,10 +920,10 @@ void GDA_FSM_api_t::init_sim_data (  ) {
   sim_data.signal_map["GDA_FSM.pipe0_block.bool_vec_addr.reset"] = 109;
   sim_data.signals.push_back(new dat_api<32>(&mod->GDA_FSM_pipe0_block_bool_vec_addr__mult_reg));
   sim_data.signal_map["GDA_FSM.pipe0_block.bool_vec_addr.mult_reg"] = 110;
-  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_matrixCounters_ItrCounter_1__io_cout));
-  sim_data.signal_map["GDA_FSM.pipe0_block.matrixCounters.ItrCounter_1.io_cout"] = 111;
-  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_1));
-  sim_data.signal_map["GDA_FSM.pipe0_block.matrixCounters.io_counters_cout_1"] = 112;
+  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_matrixCounters_ItrCounter_1__io_vec_cout_0));
+  sim_data.signal_map["GDA_FSM.pipe0_block.matrixCounters.ItrCounter_1.io_vec_cout_0"] = 111;
+  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_matrixCounters__io_counters_cout_1_0));
+  sim_data.signal_map["GDA_FSM.pipe0_block.matrixCounters.io_counters_cout_1_0"] = 112;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_bool_vec_addr__io_k));
   sim_data.signal_map["GDA_FSM.pipe0_block.bool_vec_addr.io_k"] = 113;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block_bool_vec_addr__k_reg));
@@ -1010,10 +1010,10 @@ void GDA_FSM_api_t::init_sim_data (  ) {
   sim_data.signal_map["GDA_FSM.pipe0_block.mu_addr.io_out"] = 154;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe0_block__mu_addr_Regs));
   sim_data.signal_map["GDA_FSM.pipe0_block.mu_addr_Regs"] = 155;
-  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_sigmaCounters_ItrCounter_1__io_cout));
-  sim_data.signal_map["GDA_FSM.pipe1_block.sigmaCounters.ItrCounter_1.io_cout"] = 156;
-  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_1));
-  sim_data.signal_map["GDA_FSM.pipe1_block.sigmaCounters.io_counters_cout_1"] = 157;
+  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_sigmaCounters_ItrCounter_1__io_vec_cout_0));
+  sim_data.signal_map["GDA_FSM.pipe1_block.sigmaCounters.ItrCounter_1.io_vec_cout_0"] = 156;
+  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_1_0));
+  sim_data.signal_map["GDA_FSM.pipe1_block.sigmaCounters.io_counters_cout_1_0"] = 157;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block__io_subT_2_addr));
   sim_data.signal_map["GDA_FSM.pipe1_block.io_subT_2_addr"] = 158;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_subT_2__io_read_addr));
@@ -1039,10 +1039,10 @@ void GDA_FSM_api_t::init_sim_data (  ) {
     sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_subT_2__bRam_rw.contents[i]));
     sim_data.signal_map[GDA_FSM_subT_2__bRam_rw_path+"["+itos(i,false)+"]"] = 168+i;
   }
-  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_sigmaCounters_ItrCounter__io_cout));
-  sim_data.signal_map["GDA_FSM.pipe1_block.sigmaCounters.ItrCounter.io_cout"] = 172;
-  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_0));
-  sim_data.signal_map["GDA_FSM.pipe1_block.sigmaCounters.io_counters_cout_0"] = 173;
+  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_sigmaCounters_ItrCounter__io_vec_cout_0));
+  sim_data.signal_map["GDA_FSM.pipe1_block.sigmaCounters.ItrCounter.io_vec_cout_0"] = 172;
+  sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block_sigmaCounters__io_counters_cout_0_0));
+  sim_data.signal_map["GDA_FSM.pipe1_block.sigmaCounters.io_counters_cout_0_0"] = 173;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_pipe1_block__io_subT_addr));
   sim_data.signal_map["GDA_FSM.pipe1_block.io_subT_addr"] = 174;
   sim_data.signals.push_back(new dat_api<16>(&mod->GDA_FSM_subT__io_read_addr));

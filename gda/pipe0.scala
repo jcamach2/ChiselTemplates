@@ -45,9 +45,9 @@ class pipe0(y_vec_num : Int, x_row : Int, w : Int) extends Module {
 
     /* x matrix - testing data */
     val matrix_addr = Module(new MatrixAddrRam(w))
-   	matrix_addr.io.in := matrixCounters.io.counters_cout(1)
+   	matrix_addr.io.in := matrixCounters.io.counters_cout(1)(0)
     matrix_addr.io.const_dim := UInt(y_vec_num)
-    matrix_addr.io.k := matrixCounters.io.counters_cout(0)
+    matrix_addr.io.k := matrixCounters.io.counters_cout(0)(0)
     matrix_addr.io.en := io.pipe_en
     matrix_addr.io.reset := io.reset
 
@@ -55,7 +55,7 @@ class pipe0(y_vec_num : Int, x_row : Int, w : Int) extends Module {
     val bool_vec_addr = Module(new MatrixAddrRam(w))
     bool_vec_addr.io.in := UInt(0)
     bool_vec_addr.io.const_dim := UInt(0)
-    bool_vec_addr.io.k := matrixCounters.io.counters_cout(1)
+    bool_vec_addr.io.k := matrixCounters.io.counters_cout(1)(0)
     bool_vec_addr.io.en := io.pipe_en
     bool_vec_addr.io.reset := io.reset
 
@@ -63,7 +63,7 @@ class pipe0(y_vec_num : Int, x_row : Int, w : Int) extends Module {
     val mu_addr = Module(new MatrixAddrRam(w))
     mu_addr.io.in := UInt(0)
     mu_addr.io.const_dim := UInt(0)
-    mu_addr.io.k := matrixCounters.io.counters_cout(0)
+    mu_addr.io.k := matrixCounters.io.counters_cout(0)(0)
     mu_addr.io.en := io.pipe_en
     mu_addr.io.reset := io.reset
 

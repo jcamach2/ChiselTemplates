@@ -56,8 +56,8 @@ class pipe1(x_row : Int, w : Int) extends Module {
 	io.b := pipe1_FSM.io.pipe_enabled
 	sigmaCounters.io.counters_max := Vec(UInt(x_row) - UInt(1), UInt(x_row) - UInt(1))
 
-	val x = sigmaCounters.io.counters_cout(0)
-	val y = sigmaCounters.io.counters_cout(1)
+	val x = sigmaCounters.io.counters_cout(0)(0)
+	val y = sigmaCounters.io.counters_cout(1)(0)
 	
 	io.subT_addr := x
 	io.subT_2_addr := y

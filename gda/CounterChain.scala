@@ -4,10 +4,10 @@ import Chisel._
 import DataPaths._ 
 
 
-class ChainBundle(n : Int, w : Int) extends Bundle {
+class ChainBundle(n : Int, w : Int, stride : Int) extends Bundle {
 
 	val counters_max = (Vec.fill(n) { UInt(width = w)}).asInput
-	val counters_cout = (Vec.fill(n) { Vec(UInt(width = w)) }).asOutput
+	val counters_cout = (Vec.fill(n) { Vec.fill(stride) { UInt(width = w) } }).asOutput
 	val counters_done = (Vec.fill(n) { Bool() }).asOutput
 
 	val en = Bool().asInput
@@ -17,7 +17,7 @@ class ChainBundle(n : Int, w : Int) extends Bundle {
 
 class CounterChain(n : Int, w : Int) extends Module {
 
-	val io = new ChainBundle(n, w)
+	val io = new ChainBundle(n, w, 1)
 
 	val counters = for (i <- 0 until n) yield
 					{
@@ -53,12 +53,6 @@ class CounterChain(n : Int, w : Int) extends Module {
 
 
 class CounterChainTests (c: CounterChain) extends Tester(c) {
-
-	def oneCounter(max : Int, itr : Int) =
-		0 to max  foreach { p =>  {	expect(c.io.counters_done(itr), p >= max)
-								//	expect(c.io.counters_cout(itr), p)
-									step(1) } 
-				          }
 
 
 	poke(c.io.reset, 1)
