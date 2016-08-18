@@ -5,7 +5,7 @@ import Chisel._
 
 class DoubleBufferBundle (bandwidth : Int, n : Int, readers_count : Int) extends Bundle {
 
-		val read_addr_vec = Vec.fill(readers_count) { UInt(width = bandwidth) }.asInput
+		val read_addr_vec = Vec.fill(readers_count) { UInt(width = bandwidth) }.asInput //still need to handle this - once banking is incorporated
 		val write_addr = UInt(width = bandwidth).asInput
 		val write_data = Bits(width = bandwidth).asInput
 		val write_en = Bool().asInput
@@ -73,10 +73,12 @@ class Bram_DoubleBuffer (bandwidth : Int, n : Int, readers_count : Int) extends 
 			state := dbR2W1
 		}
 
+		/* read from second BRAM, write to first BRAM */
 		is (dbR2W1) {
 			when (buffering_done) { state := dbR1W2 }
 		}
 
+		/* read from first BRAM, write to second BRAM */
 		is (dbR1W2) {
 			when (buffering_done) { state := dbR2W1 }
 		}

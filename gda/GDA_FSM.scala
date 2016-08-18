@@ -50,7 +50,7 @@ class GDA_FSM(x_row : Int, y_vec_num : Int, w : Int) extends Module {
     x_matrix.io.write_en := seqFSM.io.complete_reset
 
    	mean_y_vec.io.write_addr := io.data_in
-   	mean_y_vec.io.write_data := Bool(true)
+   	mean_y_vec.io.write_data := Bool(true) // set all to true for now 
     mean_y_vec.io.write_en := seqFSM.io.complete_reset
 
     /* end of writing */
@@ -65,6 +65,10 @@ class GDA_FSM(x_row : Int, y_vec_num : Int, w : Int) extends Module {
 
     val subT = Module(new BRAM_param(w, y_vec_num))
 	val subT_2 = Module(new BRAM_param(w, y_vec_num))
+
+	val subT_db = Module(new Bram_DoubleBuffer(w, y_vec_num, 1))
+	val subT_2_db = Module(new Bram_DoubleBuffer(w, y_vec_num, 1))
+
 
 	/* first pipe stage */
     val pipe0_block = Module(new pipe0(y_vec_num, x_row, w))
@@ -95,6 +99,19 @@ class GDA_FSM(x_row : Int, y_vec_num : Int, w : Int) extends Module {
     subT_2.io.write_data := pipe0_block.io.output_float
     subT_2.io.write_en := pipe0_block.io.addr_en 
  	
+	subT_db.io.write_addr := pipe0_block.io.subT_addr
+    subT_db.io.write_data := pipe0_block.io.output_float
+    subT_db.io.write_en := pipe0_block.io.addr_en
+
+    subT_2_db.io.write_addr := pipe0_block.io.subT_addr
+    subT_2_db.io.write_data := pipe0_block.io.output_float
+    subT_2_db.io.write_en := pipe0_block.io.addr_en
+
+//
+    subT_db.io.read_done_vec(0) := pipe1_block.io.done || state0
+    subT_2_db.io.read_done_vec(0) := pipe1_block.io.done || state0
+//
+
     seqFSM.io.pipe_done(0) := pipe0_block.io.done
    
     /* second pipe stage */
@@ -104,11 +121,23 @@ class GDA_FSM(x_row : Int, y_vec_num : Int, w : Int) extends Module {
 	pipe1_block.io.reset := state_reset
 	pipe1_block.io.complete_reset := complete_reset 
 
-	subT.io.read_addr := pipe1_block.io.subT_addr 
-	pipe1_block.io.subT_out := subT.io.read_out
+//	subT.io.read_addr := pipe1_block.io.subT_addr 
+//	pipe1_block.io.subT_out := subT.io.read_out
 
-	subT_2.io.read_addr := pipe1_block.io.subT_2_addr 
-	pipe1_block.io.subT_2_out := subT_2.io.read_out
+	pipe1_block.io.subT_out := subT_db.io.read_out 
+
+//	
+	subT_db.io.read_addr_vec(0) := pipe1_block.io.subT_addr
+	subT_2_db.io.read_addr_vec(0) := pipe1_block.io.subT_2_addr
+
+	subT_db.io.write_done := pipe0_block.io.done || state1 //no writing done in state1 in seq FSM
+	subT_2_db.io.write_done := pipe0_block.io.done || state1
+//
+
+	pipe1_block.io.subT_2_out := subT_2_db.io.read_out
+
+//	subT_2.io.read_addr := pipe1_block.io.subT_2_addr 
+//	pipe1_block.io.subT_2_out := subT_2.io.read_out
 
 	sigmaM.io.read_addr := pipe1_block.io.sigma_read_addr
 	sigmaM.io.write_addr := pipe1_block.io.sigma_write_addr
@@ -135,58 +164,65 @@ class GDA_FSM(x_row : Int, y_vec_num : Int, w : Int) extends Module {
 
 class GDA_FSM_Tests(c : GDA_FSM) extends Tester(c) {
 
-	val x = 4
-	val mu = 16
-	poke(c.io.en, 0)
-	step(1)
-	0 until x map { i => { poke(c.io.data_in, i) 
-						step(1)  }  }
-	0 until mu map { i => { poke(c.io.data_inx, i) 
-						step(1)  }  }						
-	step(1)	
-	step(1)					
-	poke(c.io.en, 1)
-	step(1)
-	expect(c.io.state0, 0)
-	step(1)
-	val list_num = List(16, 80, 224,480)
-	poke(c.io.en, 0)
-	(0 until x) foreach { i => {
-		expect(c.io.state0, 1)
-		expect(c.io.y, 0)
-		1 to 4 map { _ => step(1) } /*first pipe */
+	def testSeq_FSM(x : Int, y : Int) = {
+		val total = x * y
+		poke(c.io.en, 0)
 		step(1)
-		expect(c.io.state0, 1)
-		step(1)
-		expect(c.io.state0, 1)
-		expect(c.io.state1, 0)
-		step(1)
-		expect(c.io.y, 0)
-		expect(c.io.state0, 1)		
-		expect(c.io.state1, 0)
-		step(1)
-		expect(c.io.y, 0)
-		step(1)
-		expect(c.io.y, 0)
-		step(1)
-		expect(c.io.y, 0)
-		expect(c.io.state1, 1)
-		step(1)
-		expect(c.io.y, 0)
-		expect(c.io.state1, 1)
-		step(1)
-		1 to 16 map { p => { expect(c.io.wdata, list_num(i)); expect(c.io.y, 1); step(1) } } 
-		//expect(c.io.output, 16)
-		expect(c.io.y, 0)
-		step(1)
+		0 until x map { i => { poke(c.io.data_in, i) 
+							step(1)  }  }
+		0 until total map { i => { poke(c.io.data_inx, i) 
+							step(1)  }  }						
+		step(1)	
+		step(1)					
+		poke(c.io.en, 1)
 		step(1)
 		expect(c.io.state0, 0)
-		expect(c.io.state1, 0)
-		expect(c.io.done, if (i == 3) 1 else 0)
 		step(1)
-	}}
-	step(1)
-	step(1)
-	step(1)
-	step(1)
+		val list_num = List(16, 80, 224,480)
+		// 480 is the final correct value of sigma matrix
+		poke(c.io.en, 0)
+		(0 until x) foreach { i => {
+			expect(c.io.state0, 1)
+			expect(c.io.y, 0)
+			1 to y map { _ => step(1) } /*first pipe */
+			step(1)
+			expect(c.io.state0, 1)
+			step(1)
+			expect(c.io.state0, 1)
+			expect(c.io.state1, 0)
+			step(1)
+			expect(c.io.y, 0)
+			expect(c.io.state0, 1)		
+			expect(c.io.state1, 0)
+			step(1)
+			expect(c.io.y, 0)
+			step(1)
+			expect(c.io.y, 0)
+			step(1)
+			expect(c.io.y, 0)
+			expect(c.io.state1, 1)
+			step(1)
+			expect(c.io.y, 0)
+			expect(c.io.state1, 1)
+			step(1)
+			1 to total map { p => { expect(c.io.wdata, list_num(i)); expect(c.io.y, 1); step(1) } } 
+			//expect(c.io.output, 16)
+			expect(c.io.y, 0)
+			step(1)
+			step(1)
+			expect(c.io.state0, 0)
+			expect(c.io.state1, 0)
+			expect(c.io.done, if (i == 3) 1 else 0)
+			step(1)
+		}}
+		step(1)
+		step(1)
+		step(1)
+		step(1)
+	}
+
+	val x = 4 // row
+	val y = 4 // col / mu size 
+	testSeq_FSM(x, y)
+
 }

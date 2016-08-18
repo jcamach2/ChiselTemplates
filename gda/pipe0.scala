@@ -9,7 +9,7 @@ class pipe0(y_vec_num : Int, x_row : Int, w : Int) extends Module {
 	
 	val io = new Bundle {
 
-		val pipe_en = Bool(INPUT) /* from Sequential FSM */
+		val pipe_en = Bool(INPUT) /* from control FSM */
 		val reset = Bool(INPUT)
 		val complete_reset = Bool(INPUT)
 
@@ -93,7 +93,7 @@ class pipe0(y_vec_num : Int, x_row : Int, w : Int) extends Module {
     pipe0_datapath.io.y := y_val
     pipe0_datapath.io.mu0 := mu0_val
     pipe0_datapath.io.mu1 := mu1_val
-    pipe0_datapath.io.en := io.pipe_en /* from seq FSM */
+    pipe0_datapath.io.en := io.pipe_en /* from control FSM */
     pipe0_datapath.io.reset := io.reset
 
     /* delay input address to subT by 3 cycles total */

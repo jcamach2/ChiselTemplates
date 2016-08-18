@@ -9,16 +9,19 @@ class MetaPipe_FSM_t : public mod_t {
   void __srand(val_t seed) { __rand_seed = seed; }
   val_t __rand_val() { return ::__rand_val(&__rand_seed); }
  public:
-  dat_t<1> MetaPipe_FSM__io_en_mp_stages_2;
-  dat_t<1> MetaPipe_FSM__io_en_mp_stages_1;
-  dat_t<1> MetaPipe_FSM__io_en_mp_stages_0;
-  dat_t<1> MetaPipe_FSM__io_en;
-  dat_t<1> MetaPipe_FSM__io_done_mp_stages_0;
-  dat_t<1> MetaPipe_FSM__io_done_mp_stages_1;
   dat_t<1> MetaPipe_FSM__io_done_mp_stages_2;
-  dat_t<1> reset;
+  dat_t<1> MetaPipe_FSM__io_en_mp_stages_2;
+  dat_t<1> MetaPipe_FSM__io_done_mp_stages_1;
+  dat_t<1> MetaPipe_FSM__io_en_mp_stages_1;
+  dat_t<1> MetaPipe_FSM__io_done_mp_stages_0;
+  dat_t<1> MetaPipe_FSM__io_en_mp_stages_0;
   dat_t<1> MetaPipe_FSM__io_done;
-  dat_t<3> T41;
+  dat_t<1> MetaPipe_FSM__io_reset;
+  dat_t<1> MetaPipe_FSM__io_en;
+  dat_t<1> MetaPipe_FSM__io_done_complete;
+  dat_t<1> reset;
+  dat_t<1> MetaPipe_FSM__io_complete_reset;
+  dat_t<3> T49;
   dat_t<3> MetaPipe_FSM__state;
   clk_t clk;
 
