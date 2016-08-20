@@ -84,7 +84,6 @@ class CounterChainTests (c: CounterChain) extends Tester(c) {
 										   p == listMax(2))				
 				step(1)
 			}
-	//		oneCounter(listMax(2), 0)
 		}
 	}
 }

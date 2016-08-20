@@ -38,6 +38,7 @@ class pipe0(y_vec_num : Int, x_row : Int, w : Int) extends Module {
 
 	val matrixCounters = Module(new CounterChain(2, w))
     matrixCounters.io.en := pipe_fsm_en
+
     matrixCounters.io.reset := io.complete_reset
 
     /* first counter -> col, second counter -> row */
@@ -103,7 +104,6 @@ class pipe0(y_vec_num : Int, x_row : Int, w : Int) extends Module {
     io.subT_addr := mu_addr_Regs
     io.done := pipe0_FSM.io.done
     io.addr_en := state0_Regs(1)
-
 	io.output_float := pipe0_datapath.io.output_float
-	io.done_complete := matrixCounters.io.done_complete
+	io.done_complete := matrixCounters.io.done_complete //AND this with pipe0_FSM.io.done
 }

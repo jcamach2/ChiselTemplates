@@ -23,16 +23,17 @@ class pipe_FSM(wait_cycles : Int) extends Module {
 	/* going from pipeEnabled to pipeWait */
 	val pipe_pulse = state_en && state_wait /* one-cycle pulse */
 
-	val reg_n = wait_cycles 
+	val reg_n = wait_cycles - 1
 	val wait_regs = Vec.fill {reg_n} (Reg(init = Bool(false)))
 
-	wait_regs(0) := pipe_pulse
+	
 	if (wait_cycles > 1)
 	{
+		wait_regs(0) := pipe_pulse
 		(1 until reg_n) foreach { i => wait_regs(i) := wait_regs(i - 1) }
 	}
 
-	val wait_done = wait_regs(reg_n - 1) /* wait for #wait_cycles cycles */
+	val wait_done = if (wait_cycles > 1) wait_regs(reg_n - 1) else pipe_pulse /* wait for #wait_cycles cycles */
 
 	switch (curr_state)  {
 

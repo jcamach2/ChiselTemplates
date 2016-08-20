@@ -4,11 +4,11 @@ import Chisel._
 import DataPaths._ 
 
 
-class ChainBundle(n : Int, w : Int, p : Int) extends Bundle {
+class ChainBundle(n : Int, w : Int, stride : Int) extends Bundle {
 
 	val counters_max = (Vec.fill(n) { UInt(width = w)}).asInput
 //	val counters_cout = (Vec.fill(n) { UInt(width = w)}).asOutput
-	val counters_cout = (Vec.fill(n) { Vec.fill(p) { UInt(width = w) } }).asOutput
+	val counters_cout = (Vec.fill(n) { Vec.fill(stride) { UInt(width = w) } }).asOutput
 	val counters_done = (Vec.fill(n) { Bool() }).asOutput
 
 	val en = Bool().asInput
@@ -16,13 +16,13 @@ class ChainBundle(n : Int, w : Int, p : Int) extends Bundle {
 	val done_complete = Bool().asOutput
 }
 
-class CounterChain(n : Int, w : Int, p : Int) extends Module {
+class CounterChain(n : Int, w : Int, stride : Int) extends Module {
 
-	val io = new ChainBundle(n, w, p)
+	val io = new ChainBundle(n, w, stride)
 
 	val counters = for (i <- 0 until n) yield
 					{
-						val one_counter = Module(new ItrCounter(w, p))
+						val one_counter = Module(new ItrCounter(w, stride))
 						one_counter
 					}
 

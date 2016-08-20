@@ -49,7 +49,7 @@ class MetaPipe_FSM(w : Int, n_pipe_stages : Int) extends Module {
 	val mp_actual_stages = mp_fsm_states drop (2) /* include all pipe stages plus done stage */
 	val steady_state = mp_actual_stages(n_pipe_stages - 1)
 
-	val correct_enable = (state === steady_state) && all_pipes_done
+	var rst_ens = (state === steady_state) && all_pipes_done /* reset enables */
 
 	val n_start_stages = n_pipe_stages - 1
 	val start_done = Vec.fill(n_start_stages) { Bool() }
@@ -58,7 +58,7 @@ class MetaPipe_FSM(w : Int, n_pipe_stages : Int) extends Module {
 		when (state === mp_actual_stages(i)) {
 			when (start_done(i)) 	{ state := mp_actual_stages(i + 1) }
 		}
-		correct_enable := correct_enable || (state === mp_actual_stages(i) && start_done(i))
+		rst_ens = rst_ens || (state === mp_actual_stages(i) && start_done(i))
 	}
 
 
@@ -76,7 +76,7 @@ class MetaPipe_FSM(w : Int, n_pipe_stages : Int) extends Module {
 		when (state === mp_actual_stages(i + n_pipe_stages)) {
 			when (drain_done(i))    { state := mp_actual_stages(i + n_pipe_stages + 1) }
 		}
-		correct_enable := correct_enable || (state === mp_actual_stages(i + n_pipe_stages) && drain_done(i))
+		rst_ens = rst_ens || (state === mp_actual_stages(i + n_pipe_stages) && drain_done(i))
 	}
 
 
@@ -88,7 +88,7 @@ class MetaPipe_FSM(w : Int, n_pipe_stages : Int) extends Module {
 		io.en_mp_stages(i) := pipe_running_in_mp_state(i) && !io.done_mp_stages(i)
 	}
 
-	io.reset :=  (state === mp_Reset)
+	io.reset :=  (state === mp_Reset) || rst_ens
 	io.complete_reset := (state === mp_Init)
 	io.done := (state === mp_Done)
 
@@ -160,21 +160,5 @@ class MetaPipe_FSM_Testing(c : MetaPipe_FSM) extends Tester(c) {
 								 	expect(c.io.en_mp_stages(i), 0) } }	
     step(1)	
     expect(c.io.done, 1)							 	
-/*	(0 until pipe_n) foreach { i => { poke(c.io.done_mp_stages(i), 0);
-									 	expect(c.io.en_mp_stages(i), if (i <= 0) 0 else 1)} } 
-	step(1)   
-	(0 until pipe_n) foreach { i => { poke(c.io.done_mp_stages(i), if (i == 0) 1 else 0);
-								 	expect(c.io.en_mp_stages(i), if (i <= 0) 0 else 1)} } 
-	step(1)	
-	(0 until pipe_n) foreach { i => { poke(c.io.done_mp_stages(i), if (i == 0) 0 else 1);
-								 	expect(c.io.en_mp_stages(i), if (i <= 0) 0 else 1)} } 
-	step(1)								 	
-	(0 until pipe_n) foreach { i => { poke(c.io.done_mp_stages(i), if (i == 0) 1 else 0);
-									 	expect(c.io.en_mp_stages(i), if (i <= 1) 0 else 1)} } 
-	step(1)
-	expect(c.io.done, 0)
-	(0 until pipe_n) foreach { i => { poke(c.io.done_mp_stages(i), if (i == 2) 1 else 0);
-									 	expect(c.io.en_mp_stages(i), if (i <= 1) 0 else 1)} } 
-	step(1)*/
 
 }

@@ -29,7 +29,6 @@ class pipe1(x_row : Int, w : Int) extends Module {
 		val subT_2_addr = UInt(OUTPUT, w)
 		val subT_2_out = UInt(INPUT, w)
 
-		val b = Bool(OUTPUT)
 	}
 
 	val pipe1_FSM = Module(new pipe_FSM(2)) /* pipe FSM */
@@ -38,7 +37,7 @@ class pipe1(x_row : Int, w : Int) extends Module {
     val mtxCounter = Module(new ItrCounter(w, 1))
 
     mtxCounter.io.reset := io.reset
-    mtxCounter.io.max := UInt(x_row * x_row) - UInt(1)
+    mtxCounter.io.max := UInt(x_row * x_row - 1)
     
     /* delay en signal for sigma matrix write by 2 cycles */
 	val state1_Regs = Vec.fill(2) { Reg(init = Bool(false)) }
@@ -53,8 +52,7 @@ class pipe1(x_row : Int, w : Int) extends Module {
 	sigmaCounters.io.reset := io.reset
 
 	pipe1_FSM.io.counter_done := sigmaCounters.io.done_complete
-	io.b := pipe1_FSM.io.pipe_enabled
-	sigmaCounters.io.counters_max := Vec(UInt(x_row) - UInt(1), UInt(x_row) - UInt(1))
+	sigmaCounters.io.counters_max := Vec(UInt(x_row - 1), UInt(x_row - 1))
 
 	val x = sigmaCounters.io.counters_cout(0)(0)
 	val y = sigmaCounters.io.counters_cout(1)(0)

@@ -1,4 +1,4 @@
-[0m[[0minfo[0m] [0mRunning Templates.Templates MP_FSM --backend c --compile --test --genHarness[0m
+[0m[[0minfo[0m] [0mRunning GDA.GDA GDA_MetaPipe_FSM --backend c --compile --test --genHarness[0m
 [0m[[0mdebug[0m] [0mWaiting for threads to exit or System.exit to be called.[0m
 [0m[[0mdebug[0m] [0m  Classpath:[0m
 [0m[[0mdebug[0m] [0m	/home/jc/Documents/ChiselTemplates/gda/target/scala-2.11/classes[0m

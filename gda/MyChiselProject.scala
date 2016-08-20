@@ -12,6 +12,11 @@ object GDA {
            chiselMainTest(tutArgs, () => Module(new GDA_FSM(4, 4, 16))) {
             c => new GDA_FSM_Tests(c)
         }
+       case "GDA_MetaPipe_FSM" =>
+           chiselMainTest(tutArgs, () => Module(new GDA_MetaPipe_FSM(4, 4, 16))) {
+            c => new GDA_MP_FSM_Tests(c)
+        }
+
     }
   }
 }
